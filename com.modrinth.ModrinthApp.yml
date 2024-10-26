@@ -38,6 +38,38 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)$
 
+  - name: x264
+    config-opts:
+      - --disable-cli
+      - --enable-shared
+    cleanup:
+      - /include
+    sources:
+      - type: git
+        url: https://code.videolan.org/videolan/x264.git
+        branch: master
+        commit: 3a21e97bf23676a0bf4616df8bc2207c9fd7b1d3
+
+  - name: ffmpeg
+    config-opts:
+      - --enable-gpl
+      - --enable-shared
+      - --disable-static
+      - --enable-gnutls
+      - --disable-doc
+      - --disable-programs
+      - --disable-devices
+      - --enable-libopus
+      - --enable-libvorbis
+      - --enable-libx264
+    cleanup:
+      - /share/ffmpeg
+      - /include
+    sources:
+      - type: archive
+        url: https://ffmpeg.org/releases/ffmpeg-7.1.tar.xz
+        sha256: 40973d44970dbc83ef302b0609f2e74982be2d85916dd2ee7472d30678a7abe6
+
   - shared-modules/libappindicator/libappindicator-gtk3-12.10.json
 
   # for some controller mods (see https://github.com/isXander/Controlify/issues/31)
